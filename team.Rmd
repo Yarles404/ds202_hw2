@@ -38,3 +38,12 @@ title("Mean Ratings by Cocao Bean Origin")
 grid()
 ```
 
+#Carter's Analysis
+```{r}
+best <- choco[choco$Rating >= 4, ]
+topCountries <- sort(table(best$Location), decreasing = TRUE)
+topCountries
+bestbp <- barplot(topCountries[1:5], ylab = "Number of chocolates with a score of 4+")
+```
+
+I have found the top countries with chocolates of ratings 4 or higher. The United States has the most with a frequency of 36. France is next with a frequency of 17. Canada is third with a frequency of 13. I've displayed a bar plot showing the top 5 countries with the most chocolates that had a score of 4 or higher.
