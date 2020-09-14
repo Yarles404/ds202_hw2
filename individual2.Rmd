@@ -1,0 +1,41 @@
+---
+title: "individual2"
+output: html_document
+---
+
+```{r}
+choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv")
+str(choco)
+
+hist(choco$Rating)
+boxplot(choco$Rating, ylab="Rating")
+title("Boxplot of Chocolate Ratings")
+```
+
+There are outliers with the values 1, 1.5, 1.75, and 2.
+
+```{r}
+barplot(table(choco$Date))
+```
+
+The number of ratings increases on average every year until 2015. After 2015, the number of ratings drops below 250 and varies more than before 2015.
+
+```{r}
+plot(choco$Rating, choco$Cocoa_Percent)
+cor(choco$Rating, choco$Cocoa_Percent)
+```
+
+It does not appear that chocolate ratings depend on cocoa percentage. There is no trend in the scatter plot, which indicates there is no relationship between the two. There is also a -0.15 correlation, which is very weak and suggests there is no relationship.
+
+```{r}
+best <- choco[choco$Rating >= 4,]
+chars <- c(as.character(best$Characteristics1), as.character(best$Characteristics2), as.character(best$Characteristics3), as.character(best$Characteristics4))
+topChars <- sort(table(chars), decreasing = TRUE)
+topChars
+
+top5Chars <- topChars[1:5]
+barplot(top5Chars, ylab = "Number of Fours")
+title("Top Characteristics of the Top 100 Chocolates")
+```
+
+The top three characteristics are creamy, cocoa, and nutty. Creamy was a characteristic present in 36 of the best rated chocolate. Cocoa was present in 23 of them. Nutty was present in 17 of them.
